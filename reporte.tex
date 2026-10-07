@@ -1,0 +1,112 @@
+\documentclass[t,aspectratio=169]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{parskip}
+\usepackage{ragged2e}
+\usepackage{booktabs}
+
+
+\usetheme{Luebeck}
+\usecolortheme{seagull}
+\setbeamertemplate{navigation symbols}{}
+
+\title[Degradación ambiental y la actividad económica]{La relación de los costes de degradación de los recursos ambientales con las actividades económicas en el sector agrícola en México (2003-2024)}
+
+\author[F. Méndez]{Fabían Méndez Martínez\inst{1}}
+\institute[U.V]{\inst{1}Estudiante de la licenciatura de economía de la Universidad Veracruzana}
+
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Información disponible}
+    \vfill
+        \begin{columns}[c]
+        \begin{column}{0.45\textwidth}
+        \justifying
+            Para la realización de este trabajo se utilizó la información nacional disponible en la Base de Datos Estadísticos del Sistema Nacional de Información Ambiental y de Recursos Naturales (BADESNIARN) separando el componente tendencia a través de un Filtro Hodrick-Prescott.
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{figure}
+                \begin{center}
+                    \includegraphics[scale=.25]{/home/laurfab/PositronProjects/FIDECOAGUA/Reporte_degradacion_ambiental/Figures/CE_HP}
+                    \caption{Utilización del filtro Hodrick-Prescott para separar los componentes ciclo y tendencia del costo de degradación ambiental}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
+\begin{frame}{El modelo de costo de degradación ambiental}
+    
+    Para estimar la relación de la actividad económica con los costes de desgaste ambiental se utilizó un modelo de regresión lineal con errores ARMA. De la forma
+    $$ \ln{Ce} = \beta_0 + \beta_1\ln{Vp} + \beta_2\ln{Vo} + \beta_3\ln{Ap} + \mu,$$
+    donde $\mu$ tiene la forma
+    $$ \mu_t = c + \sum_{i=1}^{p}\phi_i\mu_{t-i} + \epsilon_t + \sum_{j=1}^{q}\theta_j\epsilon_{t-j}.$$
+    \begin{itemize}
+        \item $Ce:$ Costos de la degradación ambiental (Sector agrícola)
+        \item $Vp:$ Valor de la producción agrícola no orgánica
+        \item $Vo:$ Valor de la producción agrícola orgánica
+        \item $Ap:$ Consumo aparente de productos pecuarios
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Resultados}
+    
+\justifying Veamos que las variables Valor de la producción agrícola orgánica (Vo) y Consumo aparente de productos pecuarios (Ap) indican que ante incrementos porcentuales los costes de la degradación ambiental (Ce) aumenten en $0.15\%$ y $5.29\%$ respectivamente. Notemos que de acuerdo al modelo un incremento porcentual en el Valor de la producción agrícola no orgánica provoca un decrecimiento de un $1.03\%$ en los costes de degradación ambiental.
+    
+\vfill
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Variable}  & \textbf{Coeficiente} & \textbf{P\textgreater{}|z|} \\ \midrule
+\textbf{$\beta_0$} & -40.3760             & 0.000                       \\ \midrule
+\textbf{Vp}        & -1.0366              & 0.000                       \\ \midrule
+\textbf{Vo}        & 0.1518               & 0.000                       \\ \midrule
+\textbf{Ap}        & 5.2951               & 0.000                       \\ \bottomrule
+\end{tabular}
+\end{table}
+    
+\end{frame}
+
+\begin{frame}{Conclusiones}
+    Veamos que los coeficientes relacionados con la producción orgánica y el consumo de productos pecuarios son intuitivos, aunque notemos la diferencia en la magnitud del segundo. Lo que implica que las actividades pecuarias repercuten con mayor magnitud en los costes de degradación ambiental.
+    
+Los resultados del coeficiente relacionado al valor de la producción no orgánica es contraintuitivo pues se espera que ante el aumento de la producción agrícola, la cual utiliza agroquímicos, aumente el coste de la degradación ambiental.
+
+\end{frame}
+
+\begin{frame}{Código}
+    El código de Python, la base de datos y el código de estas diapositivas pueden encontrarse en el siguiente repositorio de GitHub
+    \vfill
+    \begin{figure}
+        \begin{center}
+            \includegraphics[scale=.25]{/home/laurfab/PositronProjects/FIDECOAGUA/Reporte_degradacion_ambiental/Figures/BR}
+        \end{center}
+    \end{figure}
+    
+    \vfill
+    
+\end{frame}
+
+\end{document}
